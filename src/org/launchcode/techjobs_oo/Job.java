@@ -45,6 +45,21 @@ public class Job {
 
     // custom toString
 
+    @Override
+    public String toString() {
+        if (name == null && employer == null && location == null && positionType == null && coreCompetency == null) {
+            return "OOPS! This job does not seem to exist.";
+        } else {
+
+            return  "\nID: " + id +
+                    "\nName: " + name +
+                    "\nEmployer: " + employer +
+                    "\nLocation: " + location +
+                    "\nPosition Type: " + positionType +
+                    "\nCore Competency: " + coreCompetency +
+                    '\n';
+        }
+    }
 
 
     // getters and setters

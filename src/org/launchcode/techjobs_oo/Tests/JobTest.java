@@ -33,4 +33,30 @@ public class JobTest {
         Job testJob2 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         Assert.assertNotEquals(testJob1, testJob2);
     }
+
+    @Test
+    public void jobStringShouldReturnBlankLineBeforeAndAfter() {
+        Job testJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        String testString = testJob.toString();
+        Assert.assertEquals(testString.charAt(0), '\n');
+        Assert.assertEquals(testString.charAt(testString.length() - 1), '\n');
+    }
+
+    @Test
+    public void testCustomStringForJobs() {
+        Job testJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        Assert.assertEquals(testJob.toString(), "\nID: 1\nName: Product tester\nEmployer: ACME\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n");
+    }
+
+    @Test
+    public void testJobToStringReturnsDataNotAvailable() {
+        Job testJob = new Job("Product tester", new Employer(), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        Assert.assertEquals(testJob.toString(), "\nID: 1\nName: Product tester\nEmployer: Data not available\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n");
+    }
+
+    @Test
+    public void emptyJobReturnsMessage() {
+        Job testJob = new Job();
+        Assert.assertEquals("OOPS! This job does not seem to exist.", testJob.toString());
+    }
 }
